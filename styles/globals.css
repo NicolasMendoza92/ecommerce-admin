@@ -1,0 +1,64 @@
+/* importo los estilos de tailwind (aprendiendo a usar) */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    h1 {
+        @apply text-blue-600;
+      }
+    label{
+        @apply text-gray-600 text-sm;
+    }
+    table.basic{
+        @apply mt-5 w-full bg-white shadow-md rounded;
+    }
+    table.basic thead
+    {
+        @apply  text-sm text-gray-600 uppercase border px-2 py-1;
+    }
+    table.basic tr,td
+    {
+        @apply  text-gray-900 px-2 py-1;
+    }
+
+    table.basic a{
+        @apply flex inline-flex mx-1 items-center gap-1 text-sm py-1;
+    }
+
+    .btn-primary{
+        @apply border bg-blue-600 text-white px-3 py-1 ms-1 rounded shadow-sm hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-400 ;
+    }
+
+    .btn-red{
+        @apply border bg-red-300 text-red-600 px-3 py-1 ms-1 rounded shadow-sm hover:bg-red-200 focus:outline-none focus:ring focus:ring-red-100 ;
+    }
+    .btn-default{
+        @apply border bg-white text-gray-800 px-3 py-1 ms-1 rounded-sm border border-gray-200 hover:bg-gray-300 hover:text-white focus:outline-none focus:ring focus:ring-gray-400;
+    }
+  }
+
+
+img{
+    max-height: 100%;
+}
+
+.swym-count-data-buy {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(180, 44, 44, 0.636);
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    width: 1.3px;
+    height: 1.5em;
+    min-width: 1.3em;
+    right: 75px;
+    bottom: -60px;
+    z-index: 0;
+    cursor: pointer;
+  }
