@@ -2,11 +2,11 @@ import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import { isAdminRequest} from "@/pages/api/auth/[...nextauth]";
 
-
 export default async function handle(req, res) {
 
     // le pedimos que traiga toda la info que solicito , con req y lo  
     const { method } = req;
+    // me conecto con mongoose, para que figure en mi base de datos como una coleccion, donde pueda editar los objetos. 
     await mongooseConnect();
     await isAdminRequest(req,res);
 
