@@ -27,6 +27,10 @@ export default function ProductForm({
     const [goToProducts, setGoToProducts] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
 
+    // trato de poner esta vble para ver si puedo filtrar por categoria en el front. 
+    const selectedCateg = categories.find(({ _id }) => _id === category)
+
+
     // necesito usar useefect para traer las categorias de otro lugar, guardarlas en un estado con useState y poder plasmarlas en el select del productForm
     useEffect(() => {
         axios.get('/api/categories').then(result => {
@@ -42,8 +46,10 @@ export default function ProductForm({
             price,
             images,
             category,
-            properties: productProperties
+            properties: productProperties,
+            belongsCat: selectedCateg.name,
         }
+        console.log(data)
         if (_id) {
             // update  - traemos la informacion que tiene data (...data) y ademas le inclumimos como parametro el id. 
             await axios.put('/api/products', { ...data, _id });
@@ -56,7 +62,6 @@ export default function ProductForm({
 
     if (goToProducts === true) {
         router.push('/products')
-
     }
 
     // 1ro consoleamos el evento, para ver como es cuando cargo una imagen- vemos el array en la consola, y vamos a "target" y dentro de target a "files" y eso es lo que tengo que traer. Una vez que cargo la imagen, luego la debo incluir a mis propiedaes de objeto. 
@@ -76,7 +81,6 @@ export default function ProductForm({
             setIsUploading(false);
         }
     }
-
 
     // con el console.log de los "arguments", podemos ver el orden del array - y con un click en el front podemos arrastrar y cambiamos imagenes orden. 
     // solo tenemos que setear las imagenes, con el useState y le enviamos el parametro images.
@@ -129,16 +133,17 @@ export default function ProductForm({
                     <div key={p.name} className="gap-1">
                         {/* aca ponemos la primera letra posicion 0, con mayuscula y el resto chico */}
                         <label>{p.name[0].toUpperCase() + p.name.substring(1)}</label>
-                            <select
-                                className="mt-1 block w-full px-2 py-1 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400"
-                                value={productProperties[p.name]}
-                                onChange={e => setProductProp(p.name, e.target.value)}
-                            >
-                                {/* por cada prop, creo una opción */}
-                                {p.values.map(v => (
-                                    <option key={v} value={v}>{v}</option>
-                                ))}
-                            </select>
+                        <select
+                            className="mt-1 block w-full px-2 py-1 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400"
+                            value={productProperties[p.name]}
+                            onChange={e => setProductProp(p.name, e.target.value)}
+                        >
+                            <option value="none" disabled>selct one</option>
+                            {/* por cada prop, creo una opción */}
+                            {p.values.map(v => (
+                                <option key={v} value={v}>{v}</option>
+                            ))}
+                        </select>
                     </div>
                 ))}
                 <label> Photos</label>
@@ -151,6 +156,7 @@ export default function ProductForm({
                         {!!images?.length && images.map(link => (
                             <div key={link} className=" flex h-24 bg-white p-4 shadow-sm rounded-sm border border-gray-200">
                                 <img src={link} alt="" className="rounded-lg" />
+                                {/* <span className="swym-delete-img">x</span> */}
                             </div>
                         ))}
                     </ReactSortable>
@@ -182,7 +188,7 @@ export default function ProductForm({
                     placeholder="price"
                     value={price}
                     onChange={e => setPrice(e.target.value)} />
-                <button type="submit" className="bg-blue-900 rounded-md text-white hover:bg-blue-800 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-600 py-2 px-2 mt-2">
+                <button type="submit" className="bg-blue-600 text-white px-3 py-1 ms-1 mt-1 rounded shadow-sm hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-400">
                     Save
                 </button>
             </form>

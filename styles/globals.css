@@ -10,7 +10,7 @@
         @apply text-blue-600;
       }
     label{
-        @apply text-gray-600 text-sm;
+        @apply text-gray-700 text-sm;
     }
     table.basic{
         @apply mt-5 w-full bg-white shadow-md rounded;
@@ -38,6 +38,9 @@
     .btn-default{
         @apply border bg-white text-gray-800 px-3 py-1 ms-1 rounded-sm border border-gray-200 hover:bg-gray-300 hover:text-white focus:outline-none focus:ring focus:ring-gray-400;
     }
+    .btn-addProp{
+        @apply border bg-gray-300 text-gray-800 px-3 rounded-sm border border-gray-200 hover:bg-gray-200 focus:outline-none focus:ring focus:ring-gray-400;
+    }
   }
 
 
@@ -45,7 +48,7 @@ img{
     max-height: 100%;
 }
 
-.swym-count-data-buy {
+.swym-delete-img {
     position: relative;
     display: flex;
     align-items: center;
@@ -57,7 +60,7 @@ img{
     width: 1.3px;
     height: 1.5em;
     min-width: 1.3em;
-    right: 75px;
+    right: -10px;
     bottom: -60px;
     z-index: 0;
     cursor: pointer;

@@ -33,11 +33,11 @@ export default function DeleteProductPage() {
             <div className="flex gap-2 justify-center">
                 <button
                     onClick={deleteProduct}
-                    className="bg-red-900 rounded-md text-white hover:bg-red-800 active:bg-red-700 focus:outline-none focus:ring focus:ring-red-600 py-2 px-2 mt-2">
+                    className="btn-red">
                     Yes
                 </button>
                 <button
-                    className="bg-blue-900 rounded-md text-white hover:bg-blue-800 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-600 py-2 px-2 mt-2"
+                    className="btn-default"
                     onClick={goBack}>
                     NO
                 </button>

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Logo from "./Logo";
 
 
-export default function Nav({ show }) {
+export default function Nav({ showNav, setShowNav }) {
 
     const inactiveLink = "flex gap-1 p-1"
     const activeLink = inactiveLink + ' bg-highlight text-black rounded-sm';
@@ -22,9 +22,18 @@ export default function Nav({ show }) {
     }
 
     return (
-        <aside className={(show ? 'left-0' : 'left-full') + " top-0 text-gray-500 p-4 fixed w-full bg-bgGray h-full md:static md:w-auto transition-all"}>
-            <div className="mb-4 mr-4">
-                <Logo />
+        <aside className={(showNav ? 'left-0' : 'left-full') + " top-0 text-gray-500 mt-3 mr-3 ml-2 p-4 fixed w-full bg-bgGray h-full md:static md:w-auto transition-all rounded-lg"}>
+            <div className="flex justify-between m-1">
+                <div className="pb-2">
+                    <Logo />
+                </div>
+                <div >
+                    <button className="block md:hidden" onClick={() => setShowNav(false)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg> 
+                    </button>  
+                </div>
             </div>
             <nav className="flex flex-col gap-2">
                 <Link href={'/'} className={pathname === '/' ? activeLink : inactiveLink}>

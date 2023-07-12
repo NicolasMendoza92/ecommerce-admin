@@ -17,6 +17,7 @@ const ProductSchema = new Schema({
         ref: 'Category'
     },
     properties: { type: Object },
+    belongsCat:String, 
 },
     {
         timestamps: true,

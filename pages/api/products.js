@@ -26,9 +26,9 @@ export default async function handle(req, res) {
 
     if (method === 'POST') {
         try{
-            const { title, description, price, images, category,properties} = req.body;
+            const { title, description, price, images, category,properties, belongsCat} = req.body;
             const productDoc = await Product.create({
-                title, description, price,images,category,properties
+                title, description, price,images,category,properties, belongsCat
             })
             res.json(productDoc);
         }catch(error){
@@ -38,9 +38,9 @@ export default async function handle(req, res) {
     }
 
     if (method === 'PUT') {
-        const { title, description, price,images, _id, category,properties} = req.body;
+        const { title, description, price,images, _id, category,properties, belongsCat} = req.body;
         // los nombres de las propiedades son las mismas que las vbles, ahi ponogo lo que quiere actualizar (definimos dos parametros, el ID (identifica) y las prop que queremos cambiar)
-        await Product.updateOne({_id}, {title, description, price, images,category,properties});
+        await Product.updateOne({_id}, {title, description, price, images,category,properties, belongsCat});
         res.json(true);
     }
 

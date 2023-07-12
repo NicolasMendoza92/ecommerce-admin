@@ -10,7 +10,7 @@ export default function Layout({ children }) {
 
   if (!session) {
     return (
-      <div className='bg-bgGray w-screen h-screen flex items-center'>
+      <div className='bg-highlight w-screen h-screen flex items-center'>
         <div className="text-center w-full">
           <button onClick={() => signIn('google')} className="bg-white p-2 px-4 rounded-lg"> Login whit Google</button>
         </div>
@@ -18,7 +18,7 @@ export default function Layout({ children }) {
     )
   }
   return (
-    <div className="bg-bgGray min-h-screen">
+    <div className="bg-highlight min-h-screen">
       {/* el hmaburgesa estara d-block en pantallas md  */}
       <div className="block md:hidden flex items-center p-4">
         <button onClick={() => setShowNav(true)}>
@@ -31,9 +31,9 @@ export default function Layout({ children }) {
         </div>
       </div>
 
-      <div className=' flex'>
-        <Nav show={showNav} />
-        <div className="bg-white flex-grow mt-2 mr-2 mb-2 rounded-lg p-4">
+      <div className='flex pt-2'>
+        <Nav showNav={showNav} setShowNav={setShowNav} />
+        <div className="bg-white flex-grow m-3 rounded-lg p-4">
           {children}
         </div>
       </div>

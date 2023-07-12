@@ -1,4 +1,5 @@
 
+import Spinner from "@/components/Spinner";
 import Layout from "@/components/layout";
 import axios from "axios";
 import Link from "next/link";
@@ -8,17 +9,20 @@ import { useEffect, useState } from "react";
 export default function Products() {
 
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true)
     axios.get('/api/products').then(response => {
       setProducts(response.data);
+      setIsLoading(false);
     });
   }, []);
 
   return (
     <>
       <Layout>
-        <Link className="bg-blue-900 rounded-md text-white py-2 px-2 mb-3" href={'/products/new'}> Add a new product</Link>
+        <Link className="btn-primary" href={'/products/new'}> Add a new product</Link>
         <table className="basic">
           <thead>
             <tr>
@@ -27,6 +31,15 @@ export default function Products() {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td colSpan={2}>
+                {isLoading && (
+                  <div className="w-full flex justify-center py-4">
+                    <Spinner />
+                  </div>
+                )}
+              </td>
+            </tr>
             {products.map(product => (
               <tr key={product._id}>
                 <td>{product.title}</td>
