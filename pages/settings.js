@@ -8,7 +8,7 @@ import { withSwal } from "react-sweetalert2";
 function Settings({ swal }) {
 
   const [products, setProducts] = useState([]);
-  const [featuredProductId, setFeatureProductId] = useState([]);
+  const [featuredProductId, setFeatureProductId] = useState('');
   const [shippingFee, setShippingFee] = useState('');
 
   const [email, setEmail] = useState('');
@@ -193,6 +193,7 @@ function Settings({ swal }) {
               <label>Choose featrued product</label>
               <select className="m-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400"
                 value={featuredProductId}
+                multiple={false}
                 onChange={(e) => setFeatureProductId(e.target.value)}>
 
                 {products.length > 0 && products.map(p => (
