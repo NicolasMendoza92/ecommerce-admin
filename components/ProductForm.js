@@ -49,7 +49,6 @@ export default function ProductForm({
             properties: productProperties,
             belongsCat: selectedCateg.name,
         }
-        console.log(data)
         if (_id) {
             // update  - traemos la informacion que tiene data (...data) y ademas le inclumimos como parametro el id. 
             await axios.put('/api/products', { ...data, _id });

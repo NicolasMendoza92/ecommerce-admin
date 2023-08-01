@@ -2,12 +2,15 @@ import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import Layout from "@/components/layout";
 import Spinner from "@/components/Spinner";
+import { v4 } from 'uuid'
 
 export default function OrdersPage() {
 
   const [orders, setOrders] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
+
+
 
   function refresh() {
     getOrders();
@@ -57,7 +60,14 @@ export default function OrdersPage() {
           </tr>
           {orders?.map(order => (
             <tr key={order._id}>
-              <td>{(new Date(order.createdAt)).toLocaleString()}
+              <td>{(new Date(order.createdAt)).toLocaleString(
+                "en-US",
+                {
+                  month: "short",
+                  day: "2-digit",
+                  year: "numeric",
+                }
+              )}
               </td>
               <td className={order.paid ? 'text-green-600' : 'text-red-600'}>
                 {order.paid ? 'YES' : 'NO'}
@@ -68,8 +78,8 @@ export default function OrdersPage() {
                 {order.streetAddress}
               </td>
               <td>
-                {order.line_items.map(item => (
-                  <Fragment key={item.id}>
+                {order.line_items?.map(item => (
+                  <Fragment key={v4()}>
                     {item.price_data?.product_data.name} x
                     {item.quantity}<br />
                   </Fragment>

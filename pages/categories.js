@@ -4,6 +4,8 @@ import axios from "axios";
 import { withSwal } from 'react-sweetalert2';
 import Layout from "@/components/layout";
 import Spinner from "@/components/Spinner";
+// esto es un npm packgage para poner id y quitar el error de map.
+import { v4 } from "uuid";
 
 
 
@@ -178,7 +180,7 @@ function Categories({ swal }) {
                         Property
                     </button>
                     {properties.length > 0 && properties.map((property, index) => (
-                        <div key={property._id} className="flex gap-1 mb-2">
+                        <div key={v4()} className="flex gap-1 mb-2">
                             <input
                                 className="mt-1 block w-full px-1 py-1 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400"
                                 type="text"

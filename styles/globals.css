@@ -7,7 +7,10 @@
 
 @layer base {
     h1 {
-        @apply text-blue-600;
+        @apply text-xl mb-2 mt-4 text-blue-600 ;
+      }
+    h2 {
+        @apply text-gray-600 text-xl mb-2 mt-4;
       }
     label{
         @apply text-gray-700 text-sm;
@@ -41,6 +44,26 @@
     .btn-addProp{
         @apply border bg-gray-300 text-gray-800 px-3 rounded-sm border border-gray-200 hover:bg-gray-200 focus:outline-none focus:ring focus:ring-gray-400;
     }
+    .btn-google{
+        background-color: #4285F4;
+        color: white;
+    }
+    .board-grid {
+        @apply grid  grid-cols-1 md:grid-cols-3 gap-4;
+    }
+    .board-card{
+        @apply bg-white shadow-md p-4 text-blue-800 text-center;
+    }
+    .board-title{
+        @apply uppercase text-gray-500 font-bold text-xs text-center;
+    }
+    .board-number{
+        @apply text-4xl text-center  font-bold my-1;
+    }
+    .board-desc{
+        @apply text-xs text-gray-400;
+    }
+
   }
 
 
