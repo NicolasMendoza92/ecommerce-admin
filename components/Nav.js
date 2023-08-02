@@ -17,9 +17,7 @@ export default function Nav({ showNav, setShowNav }) {
     async function logOut() {
         await router.push('/');
         // importamos el singOut de next/auth viene todo hecho. Sale de google
-        await signOut({
-            callbackUrl: process.env.PUBLIC_URL_ADMIN,
-        });
+        await signOut();
 
     }
 
