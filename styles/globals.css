@@ -45,9 +45,10 @@
         @apply border bg-gray-300 text-gray-800 px-3 rounded-sm border border-gray-200 hover:bg-gray-200 focus:outline-none focus:ring focus:ring-gray-400;
     }
     .btn-google{
-        background-color: #4285F4;
-        color: white;
+        @apply  bg-bgGoogle text-white px-3 py-1 ms-1 rounded shadow-sm hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-400
+     
     }
+  
     .board-grid {
         @apply grid  grid-cols-1 md:grid-cols-3 gap-4;
     }
@@ -63,7 +64,11 @@
     .board-desc{
         @apply text-xs text-gray-400;
     }
-
+.mystore{
+    font-size: x-large;
+    color: #e3e2e8;
+    font-weight: 900;
+}
   }
 
 

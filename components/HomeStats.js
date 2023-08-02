@@ -61,17 +61,17 @@ export default function HomeStats() {
                 <div className="board-card" >
                     <h3 className="board-title ">Today</h3>
                     <div className="board-number">$ {revenueDay}</div>
-                    <div className="board-desc">bla bla bla</div>
+                    <div className="board-desc">revenue in 24hs</div>
                 </div>
                 <div className="board-card" >
                     <h3 className="board-title ">Week</h3>
                     <div className="board-number">${revenueWeek}</div>
-                    <div className="board-desc">bla bla bla</div>
+                    <div className="board-desc">revenue in this week</div>
                 </div>
                 <div className="board-card" >
                     <h3 className="board-title ">Month</h3>
                     <div className="board-number">${revenueMonth}</div>
-                    <div className="board-desc">bla bla bla</div>
+                    <div className="board-desc">revenue in last 30 days</div>
                 </div>
             </div>
         </div>

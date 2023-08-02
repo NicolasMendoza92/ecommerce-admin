@@ -10,9 +10,13 @@ export default function Layout({ children }) {
 
   if (!session) {
     return (
-      <div className='bg-highlight w-screen h-screen flex items-center'>
-        <div className="text-center w-full">
-          <button onClick={() => signIn('google')} className="btn-google p-2 px-4 rounded-lg"> Login whit Google</button>
+      <div className='bg-highlight w-screen h-screen flex justify-center items-center'>
+        <div className="bg-primary p-4 rounded-md flex-col items-center">
+          <h1 className="mystore text-center m-2">My Store</h1>
+          <p className="text-center">Welcome to dasboard admin</p>
+          <div className="text-center m-2 ">
+            <button onClick={() => signIn('google')} className="btn-google p-2 px-4 rounded-lg"> Continue whit Google</button>
+          </div>
         </div>
       </div>
     )
