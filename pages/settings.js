@@ -27,7 +27,7 @@ function Settings({ swal }) {
       if (result.isConfirmed) {
         await axios.delete('/api/admins?_id=' + _id).then(() => {
           swal.fire({
-            title: 'Admin created',
+            title: 'Admin deleted',
             icon: 'success',
           })
           getAdminEmails();
