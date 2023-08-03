@@ -1,11 +1,11 @@
 import Spinner from "@/components/Spinner";
 import Layout from "@/components/layout";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { withSwal } from "react-sweetalert2";
+import { useEffect, useState } from "react"
+import Swal from "sweetalert2";
 
 
-function Settings({ swal }) {
+export default function Settings() {
 
   const [products, setProducts] = useState([]);
   const [featuredProductId, setFeatureProductId] = useState('');
@@ -16,7 +16,7 @@ function Settings({ swal }) {
   const [isLoading, setIsLoading] = useState(false);
 
   function deleteUser(_id) {
-    swal.fire({
+    Swal.fire({
       title: 'Do you want to delete this user?',
       showCancelButton: true,
       cancelButtonText: 'Cancel',
@@ -41,14 +41,14 @@ function Settings({ swal }) {
     e.preventDefault(e);
     // necesitamos guardar los admin en nuestra base de datos
     axios.post('/api/admins', { email }).then(res => {
-      swal.fire({
+      Swal.fire({
         title: 'Admin created',
         icon: 'success',
       })
       setEmail('');
       getAdminEmails();
     }).catch(err => {
-      swal.fire({
+      Swal.fire({
         title: 'Something happened',
         text: err.response.data.message,
         icon: 'error',
@@ -218,7 +218,3 @@ function Settings({ swal }) {
     </Layout>
   );
 }
-
-export default withSwal(({ swal }) => (
-  <Settings swal={swal} />
-));

@@ -1,15 +1,16 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { withSwal } from 'react-sweetalert2';
 import Layout from "@/components/layout";
 import Spinner from "@/components/Spinner";
 // esto es un npm packgage para poner id y quitar el error de map.
 import { v4 } from "uuid";
+import Swal from "sweetalert2";
 
 
 
-function Categories({ swal }) {
+
+export default function Categories() {
 
     const [editedCategory, setEditedCategory] = useState(null);
     const [name, setName] = useState('');
@@ -76,7 +77,7 @@ function Categories({ swal }) {
 
     function deleteCategory(category) {
         // agrego los botones y opciones segun la libreria sweet
-        swal.fire({
+        Swal.fire({
             title: 'Are you sure?',
             text: `Do you want to delete ${category.name}?`,
             showCancelButton: true,
@@ -260,8 +261,3 @@ function Categories({ swal }) {
         </Layout>
     );
 }
-
-// segun la libreria de sweet alert, tenemos que poner toda mi page, dentro de un componente. as following. 
-export default withSwal(({ swal }, ref) => (
-    <Categories swal={swal} />
-));
