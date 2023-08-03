@@ -13,6 +13,7 @@ const adminEmails = ['nicomendoza.92@gmail.com'];
 // }
 
 export const authOptions = {
+  secret:process.env.SECRET,
   providers: [
     // OAuth authentication providers...
     GoogleProvider({
