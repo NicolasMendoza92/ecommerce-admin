@@ -1,26 +1,11 @@
 import Nav from "@/components/Nav"
-import { useSession, signIn, signOut } from "next-auth/react"
 import { useState } from "react";
 import Logo from "./Logo";
 
 export default function Layout({ children }) {
-  const { data: session } = useSession();
   // con estados, como si fuera un modal trabajamos el dashboard
   const [showNav, setShowNav] = useState(false);
 
-  if (!session) {
-    return (
-      <div className='bg-highlight w-screen h-screen flex justify-center items-center'>
-        <div className="bg-primary p-4 rounded-md flex-col items-center">
-          <h1 className="mystore text-center m-2">My Store</h1>
-          <p className="mystoretext text-center">Welcome to dasboard admin</p>
-          <div className="text-center m-2 ">
-            <button onClick={() => signIn('google')} className="btn-google p-2 px-4 rounded-lg"> Continue whit Google</button>
-          </div>
-        </div>
-      </div>
-    )
-  }
   return (
     <div className="bg-highlight min-h-screen">
       {/* el hmaburgesa estara d-block en pantallas md  */}

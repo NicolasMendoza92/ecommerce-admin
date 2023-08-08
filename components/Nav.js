@@ -22,7 +22,7 @@ export default function Nav({ showNav, setShowNav }) {
     }
 
     return (
-        <aside className={(showNav ? 'left-0' : 'left-full') + " top-0 text-gray-500 mt-3 mr-3 ml-2 p-4 fixed w-full bg-bgGray h-full md:static md:w-auto transition-all rounded-lg"}>
+        <aside className={(showNav ? 'left-0' : 'left-full') + " top-0 text-gray-500 mt-3 mr-3 ml-2 p-4 fixed w-full bg-highlight h-full md:static md:w-auto transition-all rounded-lg"}>
             <div className="flex justify-between m-1">
                 <div className="pb-2">
                     <Logo />
