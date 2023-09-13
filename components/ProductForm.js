@@ -28,8 +28,17 @@ export default function ProductForm({
     const [isUploading, setIsUploading] = useState(false);
 
     // trato de poner esta vble para ver si puedo filtrar por categoria en el front. 
-    const selectedCateg = categories.find(({ _id }) => _id === category)
+    const selectedCateg = categories.find(({ _id }) => _id === category);
+    const [catChosen, setCatChosen] = useState('');
 
+    useEffect(() => {
+        if (selectedCateg?.parent === undefined) {
+            setCatChosen(selectedCateg?.name)
+        }
+        else {
+            setCatChosen(selectedCateg.parent?.name)
+        }
+    }, [selectedCateg])
 
     // necesito usar useefect para traer las categorias de otro lugar, guardarlas en un estado con useState y poder plasmarlas en el select del productForm
     useEffect(() => {
@@ -47,7 +56,7 @@ export default function ProductForm({
             images,
             category,
             properties: productProperties,
-            belongsCat: selectedCateg.name,
+            belongsCat: catChosen,
         }
         if (_id) {
             // update  - traemos la informacion que tiene data (...data) y ademas le inclumimos como parametro el id. 

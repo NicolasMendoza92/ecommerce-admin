@@ -66,7 +66,6 @@ export default function Categories() {
         // pongo el "?" para que verifique el objeto, parent es un obj.
         setParentCategory(category.parent?._id);
         // por cada propiedad (name y value) yo devuelvo un obeto que tenga el nombre y los valores como string unidos por coma
-        console.log(properties)
         setProperties(
             category.properties.map(({ name, values }) => ({
                 name,
