@@ -7,26 +7,37 @@ import { v4 } from 'uuid'
 export default function OrdersPage() {
 
   const [orders, setOrders] = useState([]);
+  const [pageNumber, setPageNumber] = useState(0)
+  const [numberOfPages, setNumberOfPages] = useState(0);
 
   const [isLoading, setIsLoading] = useState(false);
 
-
+  const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
 
   function refresh() {
     getOrders();
   }
 
+  const gotoPrevious = () => {
+    setPageNumber(Math.max(0, pageNumber - 1));
+  };
+
+  const gotoNext = () => {
+    setPageNumber(Math.min(numberOfPages - 1, pageNumber + 1));
+  };
+
   const getOrders = async () => {
     setIsLoading(true);
-    await axios.get('/api/orders').then(response => {
-      setOrders(response.data);
+    await axios.get(`/api/orders?page=${pageNumber}`).then(response => {
+      setOrders(response.data.orders);
+      setNumberOfPages(response.data.totalPages);
       setIsLoading(false);
     });
   }
 
   useEffect(() => {
     getOrders();
-  }, []);
+  }, [pageNumber]);
 
   return (
     <Layout>
@@ -92,6 +103,24 @@ export default function OrdersPage() {
           ))}
         </tbody>
       </table>
+      <div className="flex  justify-center py-4 gap-2">
+        <button className="btn-addProp" onClick={gotoPrevious}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
+          </svg>
+        </button>
+        {pages.map((pageIndex) => (
+          <button className="btn-default" key={pageIndex} onClick={() => setPageNumber(pageIndex)}>
+            {pageIndex + 1}
+          </button>
+        ))}
+        <button className="btn-addProp" onClick={gotoNext}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+      <p className="text-center">Page {pageNumber + 1} of </p>
     </Layout>
   );
 }

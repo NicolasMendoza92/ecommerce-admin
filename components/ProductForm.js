@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Spinner from "./Spinner";
 import { ReactSortable } from "react-sortablejs";
+import Swal from "sweetalert2";
 
 // este form es usadao para new y para edit product 
 export default function ProductForm({
@@ -96,6 +97,32 @@ export default function ProductForm({
         setImages(images);
     }
 
+    // solo saco la imagen del array images usando filter, y si el valor link es igual al del click, entonces seteo las imagenes, con la nueva lista
+    function deleteImage(e, link) {
+        e.preventDefault()
+        try{
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `Do you want to delete this image?`,
+                showCancelButton: true,
+                cancelButtonText: 'Cancel',
+                confirmButtonText: 'Yes, Delete!',
+                confirmButtonColor: '#d55',
+                reverseButtons: true,
+            }).then(async result => {
+                // hacemos console log del result y vemos que opcion es cada una. 
+                if (result.isConfirmed) {
+                    const newOnesImages =images.filter(value=> value !== link)
+                    setImages(newOnesImages)
+                }
+            });
+
+        }catch(error){
+            console.log(error)
+        }
+       
+    }
+
     function setProductProp(propName, value) {
         setProductProperties(prev => {
             const newProductProps = { ...prev };
@@ -164,7 +191,7 @@ export default function ProductForm({
                         {!!images?.length && images.map(link => (
                             <div key={link} className=" flex h-24 bg-white p-4 shadow-sm rounded-sm border border-gray-200">
                                 <img src={link} alt="" className="rounded-lg" />
-                                {/* <span className="swym-delete-img">x</span> */}
+                                <span onClick={e => deleteImage(e, link)} className="swym-delete-img">x</span>
                             </div>
                         ))}
                     </ReactSortable>

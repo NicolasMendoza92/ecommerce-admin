@@ -12,7 +12,7 @@ export default function HomeStats() {
     useEffect(() => {
         setIsLoading(true);
         axios.get('/api/orders').then(res => {
-            setOrders(res.data);
+            setOrders(res.data.orders);
             setIsLoading(false);
         })
     }, []);
