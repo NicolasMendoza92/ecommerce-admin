@@ -43,7 +43,7 @@ export default function HomeStats() {
                 <div className="board-card" >
                     <h3 className="board-title ">Today</h3>
                     <div className="board-number">{ordersToday.length}</div>
-                    <div className="board-desc">{ordersToday.length} orders in 24hs</div>
+                    <div className="board-desc">{ordersToday.length} orders in a day</div>
                 </div>
                 <div className="board-card" >
                     <h3 className="board-title ">Week</h3>
@@ -61,7 +61,7 @@ export default function HomeStats() {
                 <div className="board-card" >
                     <h3 className="board-title ">Today</h3>
                     <div className="board-number">$ {revenueDay}</div>
-                    <div className="board-desc">revenue in 24hs</div>
+                    <div className="board-desc">revenue in a day</div>
                 </div>
                 <div className="board-card" >
                     <h3 className="board-title ">Week</h3>
