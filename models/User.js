@@ -23,11 +23,6 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now(),
       },
-      role: {
-        type: String,
-        default: 'user',
-        trim: true,
-      },
 });
 
 export const User = models?.User || model('User', UserSchema);

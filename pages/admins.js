@@ -68,7 +68,7 @@ export default function Admins() {
     <Layout>
       <div className="flex flex-col md:flex-row justify-center ">
         <div className=" m-1 px-3 py-2 border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 text-center">
-          <h1>Admins</h1>
+          <h1>Google Admins</h1>
           <h2 className="text-start">Add a new Google Admin</h2>
           <form onSubmit={addAdmin}>
             <div className="flex">
@@ -137,6 +137,12 @@ export default function Admins() {
               )}
             </tbody>
           </table>
+        </div>
+        <div className=" m-1 px-3 py-2 border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 text-center">
+          <h1>Admin User Data</h1>
+          <p><b>Name:</b> Admin</p>
+          <p><b>Email:</b> admin@gmail.com</p>
+          <p><b> Password:</b> Admin123</p>
         </div>
       </div>
     </Layout>

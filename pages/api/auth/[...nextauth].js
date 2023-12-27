@@ -7,16 +7,16 @@ import NextAuth, { getServerSession } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const adminEmails = ['nicomendoza.92@gmail.com']
+const adminEmails = ['nicomendoza.92@gmail.com', 'admin@gmail.com']
 // vamos a ver si el email que se encuentra dentro de nuestra base de datos como admin.
 async function isAdminEmail(email) {
- if (await Admin.findOne({ email })){
-  return true;
- } return false;
+  if (await Admin.findOne({ email })) {
+    return true;
+  } return false;
 }
 
 export const authOptions = {
-  secret:process.env.SECRET,
+  secret: process.env.SECRET,
   providers: [
     // OAuth authentication providers...
     GoogleProvider({
@@ -24,38 +24,38 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_SECRET,
     }),
     CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        email: { label: "Email", type: "email", placeholder: "jsmith@examle.com" },
-        password: { label: "Password", type: "password" }
-      },
-      async authorize(credentials, req) {
-        // Add logic here to look up the user from the credentials supplied
-        const user = { id: "1", name: "admin@mail.com", email: "123456" };
-        const adminUser = user
-  
-        if (credentials.email === user.email && credentials.password === user.password) {
-          return user
-        } else {
-          return null
+      name: "credentials",
+      credentials: {},
+
+      async authorize(credentials) {
+        const admin = {email:'admin@gmail.com', password:'Admin123'}
+        const { email, password } = credentials;
+
+        try {
+          if (!admin) {
+            return null;
+          }
+          if (email === admin.email && password === admin.password ) {
+            return admin;
+          } else{
+            return null;
+          }
+          
+        } catch (error) {
+          console.log('error', error)
         }
-      }
-    })
+      },
+
+    }),
   ],
   adapter: MongoDBAdapter(clientPromise),
   // hacemos console log de session para ver que es lo que tenemos que verificar en el objeto que trae, como email , name etc.
-  callbacks: {
-    session: async ({ session, token, user }) => {
-      if (adminEmails.includes(session?.user?.email)) {
-        return session;
-      } else {
-        return false;
-      }
-    },
-    async jwt({ token, user, account, profile, isNewUser }) {
-      return token
-    }
-  }
+  session: {
+    strategy: "jwt",
+  },
+  pages: {
+    signIn: "/",
+  },
 }
 
 export default NextAuth(authOptions);

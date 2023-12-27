@@ -1,22 +1,20 @@
 import HomeHeader from "@/components/HomeHeader";
 import HomeStats from "@/components/HomeStats";
 import Layout from "@/components/layout";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import SinginForm from "./SigninForm";
 
 export default function Home() {
 
   const { data: session } = useSession();
+  const router = useRouter();
+
 
   if (!session) {
     return (
       <div className='bg-highlight w-screen h-screen flex justify-center items-center'>
-        <div className="bg-primary p-4 rounded-md flex-col items-center">
-          <h1 className="mystore text-center m-2">TECH STORE</h1>
-          <p className="mystoretext text-center">Welcome to dasboard admin</p>
-          <div className="text-center m-2 ">
-            <button onClick={() => signIn('')} className="btn-google p-2 px-4 rounded-lg"> Sing In</button>
-          </div>
-        </div>
+        <SinginForm/>
       </div>
     )
   }
